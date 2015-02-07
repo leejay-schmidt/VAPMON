@@ -16,6 +16,7 @@
 		AD9BC6C01A86B55700972AFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9BC6BE1A86B55700972AFF /* LaunchScreen.xib */; };
 		AD9BC6CC1A86B55700972AFF /* VAPMONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6CB1A86B55700972AFF /* VAPMONTests.m */; };
 		AD9BC6DE1A86C22E00972AFF /* SelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6DC1A86C22E00972AFF /* SelectorViewController.m */; };
+		AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6E01A86C93400972AFF /* DeviceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,9 @@
 		AD9BC6CB1A86B55700972AFF /* VAPMONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VAPMONTests.m; sourceTree = "<group>"; };
 		AD9BC6DC1A86C22E00972AFF /* SelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectorViewController.m; sourceTree = "<group>"; };
 		AD9BC6DD1A86C22E00972AFF /* SelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectorViewController.h; sourceTree = "<group>"; };
+		AD9BC6DF1A86C3EB00972AFF /* Doctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Doctor.h; sourceTree = "<group>"; };
+		AD9BC6E01A86C93400972AFF /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
+		AD9BC6E11A86C93400972AFF /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,10 +131,13 @@
 		AD9BC6D81A86C0CE00972AFF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD9BC6E11A86C93400972AFF /* DeviceViewController.h */,
+				AD9BC6E01A86C93400972AFF /* DeviceViewController.m */,
 				AD9BC6B61A86B55700972AFF /* ViewController.h */,
 				AD9BC6B71A86B55700972AFF /* ViewController.m */,
-				AD9BC6DC1A86C22E00972AFF /* SelectorViewController.m */,
+				AD9BC6DF1A86C3EB00972AFF /* Doctor.h */,
 				AD9BC6DD1A86C22E00972AFF /* SelectorViewController.h */,
+				AD9BC6DC1A86C22E00972AFF /* SelectorViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 				AD9BC6AF1A86B55700972AFF /* main.m in Sources */,
 				AD9BC6B81A86B55700972AFF /* ViewController.m in Sources */,
 				AD9BC6DE1A86C22E00972AFF /* SelectorViewController.m in Sources */,
+				AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */,
 				AD9BC6B51A86B55700972AFF /* VAPMON.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

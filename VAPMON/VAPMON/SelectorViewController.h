@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UITextFieldDelegate>
+@interface SelectorViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) IBOutlet UITextField *docCode;
+@property (nonatomic, strong) IBOutlet UIButton *xmitButton;
+@property (nonatomic, strong) IBOutlet UIButton *viewButton;
 
 
 @end

@@ -29,7 +29,7 @@
 
 - (void)docCodeChanged {
     if(docCode.text.length == 4) {
-        NSLog(@"Hit the value");
+        [self performSegueWithIdentifier:@"Next" sender:self];
     }
 }
 
