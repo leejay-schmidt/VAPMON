@@ -20,6 +20,9 @@
                                 <rect key="frame" x="44" y="187" width="232" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" secureTextEntry="YES"/>
+                                <connections>
+                                    <segue destination="yqh-px-GrU" kind="modal" identifier="Next" modalTransitionStyle="crossDissolve" id="zWO-Yf-Coh"/>
+                                </connections>
                             </textField>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your doctor code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90V-AD-foi">
                                 <rect key="frame" x="44" y="158" width="232" height="21"/>
@@ -37,6 +40,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="234" y="406"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3ud-Sk-Ng2">
+            <objects>
+                <viewController id="yqh-px-GrU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m8s-aK-b1W"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zkr-XS-Rfu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8v1-gC-bnF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select your action:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqX-pn-0fg">
+                                <rect key="frame" x="62" y="143" width="197" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UA9-5N-q0K">
+                                <rect key="frame" x="62" y="197" width="197" height="39"/>
+                                <color key="backgroundColor" red="0.9456521739" green="0.74847664930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Get Data from Device">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.01123394829974167" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfI-aq-bkk">
+                                <rect key="frame" x="62" y="264" width="197" height="39"/>
+                                <color key="backgroundColor" red="0.9456521739" green="0.74847664930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="View Patient Data">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.011233948299999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQA-xU-waY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="406"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
