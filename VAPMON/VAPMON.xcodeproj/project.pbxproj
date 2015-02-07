@@ -15,7 +15,6 @@
 		AD9BC6BD1A86B55700972AFF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD9BC6BC1A86B55700972AFF /* Images.xcassets */; };
 		AD9BC6C01A86B55700972AFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD9BC6BE1A86B55700972AFF /* LaunchScreen.xib */; };
 		AD9BC6CC1A86B55700972AFF /* VAPMONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6CB1A86B55700972AFF /* VAPMONTests.m */; };
-		AD9BC6D71A86C0A800972AFF /* UIViewController+SelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6D61A86C0A800972AFF /* UIViewController+SelectorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +42,6 @@
 		AD9BC6C51A86B55700972AFF /* VAPMONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VAPMONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9BC6CA1A86B55700972AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD9BC6CB1A86B55700972AFF /* VAPMONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VAPMONTests.m; sourceTree = "<group>"; };
-		AD9BC6D51A86C0A800972AFF /* UIViewController+SelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SelectorViewController.h"; sourceTree = "<group>"; };
-		AD9BC6D61A86C0A800972AFF /* UIViewController+SelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SelectorViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +126,6 @@
 			children = (
 				AD9BC6B61A86B55700972AFF /* ViewController.h */,
 				AD9BC6B71A86B55700972AFF /* ViewController.m */,
-				AD9BC6D51A86C0A800972AFF /* UIViewController+SelectorViewController.h */,
-				AD9BC6D61A86C0A800972AFF /* UIViewController+SelectorViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -238,7 +233,6 @@
 				AD9BC6B21A86B55700972AFF /* AppDelegate.m in Sources */,
 				AD9BC6AF1A86B55700972AFF /* main.m in Sources */,
 				AD9BC6B81A86B55700972AFF /* ViewController.m in Sources */,
-				AD9BC6D71A86C0A800972AFF /* UIViewController+SelectorViewController.m in Sources */,
 				AD9BC6B51A86B55700972AFF /* VAPMON.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
