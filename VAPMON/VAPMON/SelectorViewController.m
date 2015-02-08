@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  SelectorViewController.m
 //  VAPMON
 //
 //  Created by Leejay Schmidt on 2015-02-07.

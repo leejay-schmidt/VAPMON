@@ -6,36 +6,36 @@
 //  Copyright (c) 2015 Leejay Schmidt. All rights reserved.
 //
 
-#import "DeviceViewController.h"
+#import "PatientSelectViewController.h"
 
-@interface DeviceViewController ()
+@interface PatientSelectorViewController ()
 
 @end
 
-@implementation DeviceViewController
-@synthesize deviceTable;
+@implementation PatientSelectorViewController
+@synthesize patientArray;
 @synthesize back;
-@synthesize deviceArray;
+@synthesize patientTable;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    deviceArray = [[NSMutableArray alloc] initWithObjects:@"Device1", @"Device2", @"Device3", @"Device4", @"Device5", @"Device6", nil];
+    patientArray = [[NSMutableArray alloc] initWithObjects:@"Patient1", @"Patient2", @"Patient3", @"Patient4", @"Patient5", @"Patient6", nil];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (NSInteger)tableView:(UITableView *)deviceTable
-    numberOfRowsInSection:(NSInteger)section{
-    return [deviceArray count];
+ numberOfRowsInSection:(NSInteger)section{
+    return [patientArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)deviceTable cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    UITableViewCell *cell = [self.deviceTable dequeueReusableCellWithIdentifier:@"DeviceCell"];
+    
+    UITableViewCell *cell = [self.patientTable dequeueReusableCellWithIdentifier:@"PatientCell"];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DeviceCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PatientCell"];
     }
     
-    cell.textLabel.text = [deviceArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [patientArray objectAtIndex:indexPath.row];
     return cell;
 }
 

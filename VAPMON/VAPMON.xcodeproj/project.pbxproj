@@ -17,6 +17,7 @@
 		AD9BC6CC1A86B55700972AFF /* VAPMONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6CB1A86B55700972AFF /* VAPMONTests.m */; };
 		AD9BC6DE1A86C22E00972AFF /* SelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6DC1A86C22E00972AFF /* SelectorViewController.m */; };
 		AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6E01A86C93400972AFF /* DeviceViewController.m */; };
+		AD9BC6E51A86E7D800972AFF /* PatientSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		AD9BC6DF1A86C3EB00972AFF /* Doctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Doctor.h; sourceTree = "<group>"; };
 		AD9BC6E01A86C93400972AFF /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
 		AD9BC6E11A86C93400972AFF /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
+		AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientSelectViewController.m; sourceTree = "<group>"; };
+		AD9BC6E41A86E7D800972AFF /* PatientSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientSelectViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 			children = (
 				AD9BC6E11A86C93400972AFF /* DeviceViewController.h */,
 				AD9BC6E01A86C93400972AFF /* DeviceViewController.m */,
+				AD9BC6E41A86E7D800972AFF /* PatientSelectViewController.h */,
+				AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */,
 				AD9BC6B61A86B55700972AFF /* ViewController.h */,
 				AD9BC6B71A86B55700972AFF /* ViewController.m */,
 				AD9BC6DF1A86C3EB00972AFF /* Doctor.h */,
@@ -244,6 +249,7 @@
 			files = (
 				AD9BC6B21A86B55700972AFF /* AppDelegate.m in Sources */,
 				AD9BC6AF1A86B55700972AFF /* main.m in Sources */,
+				AD9BC6E51A86E7D800972AFF /* PatientSelectViewController.m in Sources */,
 				AD9BC6B81A86B55700972AFF /* ViewController.m in Sources */,
 				AD9BC6DE1A86C22E00972AFF /* SelectorViewController.m in Sources */,
 				AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */,
