@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14A388b" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="DataPoint" syncable="YES">
+    <entity name="DataPoint" parentEntity="Patient" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="flowRateValue" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="patientNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pressureValue" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="hasPatient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="hasDataPoints" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="parentPatient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="hasDataPoints" inverseEntity="Patient" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="date"/>
+            </compoundIndex>
+        </compoundIndexes>
     </entity>
     <entity name="Doctor" syncable="YES">
-        <attribute name="doctorCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doctorCode" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="doctorName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hasPatient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="hasDoctor" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="hasPatient" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Patient" inverseName="doctor" inverseEntity="Patient" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="doctorName"/>
+            </compoundIndex>
+            <compoundIndex>
+                <index value="doctorCode"/>
+            </compoundIndex>
+        </compoundIndexes>
     </entity>
-    <entity name="Patient" syncable="YES">
-        <attribute name="doctorCode" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Patient" parentEntity="Doctor" syncable="YES">
         <attribute name="patientName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="patientNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hasDataPoints" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DataPoint" inverseName="hasPatient" inverseEntity="DataPoint" syncable="YES"/>
-        <relationship name="hasDoctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor" inverseName="hasPatient" inverseEntity="Doctor" syncable="YES"/>
+        <attribute name="patientNumber" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor" inverseName="hasPatient" inverseEntity="Doctor" syncable="YES"/>
+        <relationship name="hasDataPoints" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="DataPoint" inverseName="parentPatient" inverseEntity="DataPoint" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="patientNumber"/>
+            </compoundIndex>
+            <compoundIndex>
+                <index value="patientName"/>
+            </compoundIndex>
+        </compoundIndexes>
     </entity>
     <elements>
+        <element name="DataPoint" positionX="468" positionY="-8658" width="128" height="103"/>
         <element name="Doctor" positionX="448" positionY="-9009" width="128" height="88"/>
-        <element name="Patient" positionX="394" positionY="-8838" width="128" height="118"/>
-        <element name="DataPoint" positionX="468" positionY="-8658" width="128" height="133"/>
+        <element name="Patient" positionX="394" positionY="-8838" width="128" height="103"/>
     </elements>
 </model>

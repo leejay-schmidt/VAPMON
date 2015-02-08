@@ -146,6 +146,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="wPK-ke-hlL" id="048-Gh-kDA"/>
                         <outlet property="patientTable" destination="31c-dr-rpe" id="EBf-Vc-OO7"/>
                     </connections>
                 </viewController>

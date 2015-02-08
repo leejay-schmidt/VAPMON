@@ -17,9 +17,25 @@
 @synthesize back;
 @synthesize patientTable;
 
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    patientArray = [[NSMutableArray alloc] initWithObjects:@"Patient1", @"Patient2", @"Patient3", @"Patient4", @"Patient5", @"Patient6", nil];
+    doctor = [Doctor getInstance];
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Patient"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"doctorCode like %@", doctor.code];
+    [fetchRequest setPredicate:predicate];
+    self.patientArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    [self.patientTable reloadData];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -28,14 +44,15 @@
     return [patientArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)deviceTable cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)patientTable cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [self.patientTable dequeueReusableCellWithIdentifier:@"PatientCell"];
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PatientCell"];
     }
-    
-    cell.textLabel.text = [patientArray objectAtIndex:indexPath.row];
+    NSManagedObject *object = [patientArray objectAtIndex:indexPath.row];
+    NSLog(@"%@", [object valueForKey:@"doctorCode"]);
+    cell.textLabel.text = [object valueForKey:@"patientName"];
     return cell;
 }
 

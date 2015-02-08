@@ -14,13 +14,64 @@
 
 @implementation DeviceViewController
 @synthesize deviceTable;
+@synthesize btleManager;
 @synthesize back;
 @synthesize deviceArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    deviceArray = [[NSMutableArray alloc] initWithObjects:@"Device1", @"Device2", @"Device3", @"Device4", @"Device5", @"Device6", nil];
+    self.deviceArray = [[NSMutableArray alloc] init];
+    self.btleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)manager
+{
+    switch (manager.state)
+    {
+        case CBCentralManagerStateUnsupported:
+        {
+            NSLog(@"State: Unsupported");
+        } break;
+            
+        case CBCentralManagerStateUnauthorized:
+        {
+            NSLog(@"State: Unauthorized");
+        } break;
+            
+        case CBCentralManagerStatePoweredOff:
+        {
+            NSLog(@"State: Powered Off");
+        } break;
+            
+        case CBCentralManagerStatePoweredOn:
+        {
+            NSLog(@"State: Powered On");
+            [self.btleManager scanForPeripheralsWithServices:nil options:nil];
+        } break;
+            
+        case CBCentralManagerStateUnknown:
+        {
+            NSLog(@"State: Unknown");
+        } break;
+            
+        default:
+        {
+        }
+            
+    }
+}
+
+- (void)centralManager:(CBCentralManager*)btleManager didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+    
+    NSString *deviceName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
+    if(![deviceName isEqual:@""]) {
+        NSLog(@"Found device: %@", peripheral.name);
+        [self.deviceArray addObject:peripheral];
+    }
+    [self.deviceTable reloadData];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)deviceTable
@@ -30,12 +81,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)deviceTable cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    CBPeripheral *btleDevice = [self.deviceArray objectAtIndex:indexPath.row];
     UITableViewCell *cell = [self.deviceTable dequeueReusableCellWithIdentifier:@"DeviceCell"];
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DeviceCell"];
     }
     
-    cell.textLabel.text = [deviceArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = btleDevice.name;
     return cell;
 }
 

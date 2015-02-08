@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Doctor.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate>
+@interface ViewController : UIViewController <UITextFieldDelegate> {
+    Doctor *doctor;
+}
 
 @property (nonatomic, strong) IBOutlet UITextField *docCode;
 

@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "Doctor.h"
 
-@interface PatientSelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface PatientSelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    Doctor *doctor;
+}
 
 @property IBOutlet UIBarButtonItem *back;
 @property (nonatomic, strong) IBOutlet UITableView *patientTable;

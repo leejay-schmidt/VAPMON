@@ -18,6 +18,7 @@
 		AD9BC6DE1A86C22E00972AFF /* SelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6DC1A86C22E00972AFF /* SelectorViewController.m */; };
 		AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6E01A86C93400972AFF /* DeviceViewController.m */; };
 		AD9BC6E51A86E7D800972AFF /* PatientSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */; };
+		ADB98BEE1A87351300643101 /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB98BED1A87351300643101 /* Doctor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		AD9BC6E11A86C93400972AFF /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 		AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientSelectViewController.m; sourceTree = "<group>"; };
 		AD9BC6E41A86E7D800972AFF /* PatientSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientSelectViewController.h; sourceTree = "<group>"; };
+		ADB98BED1A87351300643101 /* Doctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Doctor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,8 @@
 		AD9BC6AC1A86B55700972AFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD9BC6DF1A86C3EB00972AFF /* Doctor.h */,
+				ADB98BED1A87351300643101 /* Doctor.m */,
 				AD9BC6AD1A86B55700972AFF /* Info.plist */,
 				AD9BC6AE1A86B55700972AFF /* main.m */,
 			);
@@ -140,7 +144,6 @@
 				AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */,
 				AD9BC6B61A86B55700972AFF /* ViewController.h */,
 				AD9BC6B71A86B55700972AFF /* ViewController.m */,
-				AD9BC6DF1A86C3EB00972AFF /* Doctor.h */,
 				AD9BC6DD1A86C22E00972AFF /* SelectorViewController.h */,
 				AD9BC6DC1A86C22E00972AFF /* SelectorViewController.m */,
 			);
@@ -253,6 +256,7 @@
 				AD9BC6B81A86B55700972AFF /* ViewController.m in Sources */,
 				AD9BC6DE1A86C22E00972AFF /* SelectorViewController.m in Sources */,
 				AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */,
+				ADB98BEE1A87351300643101 /* Doctor.m in Sources */,
 				AD9BC6B51A86B55700972AFF /* VAPMON.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +448,7 @@
 				AD9BC6D11A86B55700972AFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD9BC6D21A86B55700972AFF /* Build configuration list for PBXNativeTarget "VAPMONTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +457,7 @@
 				AD9BC6D41A86B55700972AFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

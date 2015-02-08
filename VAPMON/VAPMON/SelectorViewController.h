@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Doctor.h"
 
-@interface SelectorViewController : UIViewController <UITextFieldDelegate>
+@interface SelectorViewController : UIViewController <UITextFieldDelegate> {
+    Doctor *doctor;
+}
 
 @property (nonatomic, strong) IBOutlet UIButton *xmitButton;
 @property (nonatomic, strong) IBOutlet UIButton *viewButton;

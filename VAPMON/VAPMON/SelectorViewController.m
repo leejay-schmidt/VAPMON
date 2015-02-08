@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    doctor = [Doctor getInstance];
+    NSLog(@"Doctor set: code=%@", doctor.code);
     // Do any additional setup after loading the view, typically from a nib.
 }
 
