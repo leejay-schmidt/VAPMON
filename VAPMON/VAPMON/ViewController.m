@@ -41,9 +41,9 @@
 - (void)docCodeChanged {
     if(docCode.text.length == 4) {
         doctor.code = docCode.text;
-        NSString *csv = @"doctorName|doctorCode\nJohn Doe|1234\nJane Doxall|4534";
+        NSString *csv = @"doctorName,doctorCode\nJohn Doe,1234\nJane Doxall,4534";
         CSVParse *parser = [[CSVParse alloc] init];
-        NSMutableArray *data = [parser parseCSV:csv];
+        NSMutableArray *data = [parser parseCSV:csv withSeparator:@","];
         NSLog(@"%@", data);
         NSManagedObjectContext *context = [self managedObjectContext];
         NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"Doctor"

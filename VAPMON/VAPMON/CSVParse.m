@@ -10,7 +10,7 @@
 
 @implementation CSVParse
 
--(NSMutableArray *)parseCSV:(NSString *)csv {
+-(NSMutableArray *)parseCSV:(NSString *)csv withSeparator:(NSString *)sep{
     NSString *currentLine = nil;
     NSMutableArray *fields = [[NSMutableArray alloc] init];
     NSMutableArray *data = [[NSMutableArray alloc] init];
@@ -22,24 +22,24 @@
         [mainScanner scanUpToString:@"\n" intoString:&currentLine];
         NSScanner *secondaryScanner = [NSScanner scannerWithString:currentLine];
         if (!count) {
-            numFields = [[currentLine componentsSeparatedByString:@"|"] count] - 1;
+            numFields = [[currentLine componentsSeparatedByString:sep] count] - 1;
         }
         NSString *fieldStr = nil;
         NSMutableDictionary *line = [[NSMutableDictionary alloc] init];
         while ([secondaryScanner isAtEnd] == NO) {
             if (!count) {
                 fieldStr = [[NSString alloc] init];
-                if (second_count < numFields) [secondaryScanner scanUpToString:@"|" intoString:&fieldStr];
+                if (second_count < numFields) [secondaryScanner scanUpToString:sep intoString:&fieldStr];
                 else [secondaryScanner scanUpToString:@"\n" intoString:&fieldStr];
-                [fields addObject:[fieldStr stringByReplacingOccurrencesOfString:@"|" withString:@""]];
+                [fields addObject:[fieldStr stringByReplacingOccurrencesOfString:sep withString:@""]];
                 second_count++;
             }
             else {
                 NSString *lineStr = nil;
                 fieldStr = [fields objectAtIndex:second_count];
-                if (second_count < numFields) [secondaryScanner scanUpToString:@"|" intoString:&lineStr];
+                if (second_count < numFields) [secondaryScanner scanUpToString:sep intoString:&lineStr];
                 else [secondaryScanner scanUpToString:@"\n" intoString:&lineStr];
-                [line setValue:[lineStr stringByReplacingOccurrencesOfString:@"|" withString:@""] forKey:fieldStr];
+                [line setValue:[lineStr stringByReplacingOccurrencesOfString:sep withString:@""] forKey:fieldStr];
                 second_count++;
             }
             

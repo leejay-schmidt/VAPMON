@@ -17,6 +17,6 @@
 @interface CSVParse : NSObject
 
 
--(NSMutableArray *)parseCSV:(NSString *)csv;
+-(NSMutableArray *)parseCSV:(NSString *)csv withSeparator:(NSString *)sep;
 
 @end
