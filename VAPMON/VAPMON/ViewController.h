@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Doctor.h"
+#import "CSVParse.h"
 
 @interface ViewController : UIViewController <UITextFieldDelegate> {
     Doctor *doctor;

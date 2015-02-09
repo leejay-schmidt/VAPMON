@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD44D5241A88772F00C7505B /* CSVParse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD44D5231A88772F00C7505B /* CSVParse.m */; };
 		AD9BC6AF1A86B55700972AFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6AE1A86B55700972AFF /* main.m */; };
 		AD9BC6B21A86B55700972AFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6B11A86B55700972AFF /* AppDelegate.m */; };
 		AD9BC6B51A86B55700972AFF /* VAPMON.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6B31A86B55700972AFF /* VAPMON.xcdatamodeld */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD44D5221A88726900C7505B /* CSVParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParse.h; sourceTree = "<group>"; };
+		AD44D5231A88772F00C7505B /* CSVParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVParse.m; sourceTree = "<group>"; };
 		AD9BC6A91A86B55700972AFF /* VAPMON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VAPMON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9BC6AD1A86B55700972AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD9BC6AE1A86B55700972AFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 			children = (
 				AD9BC6DF1A86C3EB00972AFF /* Doctor.h */,
 				ADB98BED1A87351300643101 /* Doctor.m */,
+				AD44D5221A88726900C7505B /* CSVParse.h */,
+				AD44D5231A88772F00C7505B /* CSVParse.m */,
 				AD9BC6AD1A86B55700972AFF /* Info.plist */,
 				AD9BC6AE1A86B55700972AFF /* main.m */,
 			);
@@ -254,6 +259,7 @@
 				AD9BC6AF1A86B55700972AFF /* main.m in Sources */,
 				AD9BC6E51A86E7D800972AFF /* PatientSelectViewController.m in Sources */,
 				AD9BC6B81A86B55700972AFF /* ViewController.m in Sources */,
+				AD44D5241A88772F00C7505B /* CSVParse.m in Sources */,
 				AD9BC6DE1A86C22E00972AFF /* SelectorViewController.m in Sources */,
 				AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */,
 				ADB98BEE1A87351300643101 /* Doctor.m in Sources */,
