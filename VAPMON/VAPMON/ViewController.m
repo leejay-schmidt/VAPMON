@@ -46,31 +46,37 @@
         NSMutableArray *data = [parser parseCSV:csv withSeparator:@","];
         NSLog(@"%@", data);
         NSManagedObjectContext *context = [self managedObjectContext];
-        NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"Doctor"
-                                                                inManagedObjectContext:context];
-        [object setValue:@"John Doe" forKey:@"doctorName"];
-        [object setValue:doctor.code forKey:@"doctorCode"];
+        NSManagedObject *object = nil;
         NSError *error;
-        if (![context save:&error]) {
-            NSLog(@"Failed to save - error: %@", [error localizedDescription]);
+        for (NSUInteger i = 0; i < data.count; ++i) {
+            object = [NSEntityDescription insertNewObjectForEntityForName:@"Doctor"
+                                                                    inManagedObjectContext:context];
+            
+            NSDictionary *curDoc = [data objectAtIndex: i];
+            [object setValue:[curDoc valueForKey:@"doctorName"] forKey:@"doctorName"];
+            [object setValue:[curDoc valueForKey:@"doctorCode"] forKey:@"doctorCode"];
+            if (![context save:&error]) {
+                NSLog(@"Failed to save - error: %@", [error localizedDescription]);
+            }
+            
         }
-        object = [NSEntityDescription insertNewObjectForEntityForName:@"Patient"
-                                               inManagedObjectContext:context];
-        [object setValue:@"Jane Doe" forKey:@"patientName"];
-        [object setValue:@"1234" forKey:@"doctorCode"];
-        [object setValue:@"ae5493" forKey:@"patientNumber"];
-        if (![context save:&error]) {
-            NSLog(@"Failed to save - error: %@", [error localizedDescription]);
+        csv = @"patientName|doctorCode|patientNumber\nJimmy Doe|4534|ae5786\nJane Doxall|1234|ae5493";
+        data = [parser parseCSV:csv withSeparator:@"|"];
+        NSLog(@"%@", data);
+        for (NSUInteger i = 0; i < data.count; ++i) {
+            object = [NSEntityDescription insertNewObjectForEntityForName:@"Patient"
+                                                   inManagedObjectContext:context];
+            
+            NSDictionary *curPatient = [data objectAtIndex: i];
+            [object setValue:[curPatient valueForKey:@"patientName"] forKey:@"patientName"];
+            [object setValue:[curPatient valueForKey:@"doctorCode"] forKey:@"doctorCode"];
+            [object setValue:[curPatient valueForKey:@"patientNumber"] forKey:@"patientNumber"];
+            if (![context save:&error]) {
+                NSLog(@"Failed to save - error: %@", [error localizedDescription]);
+            }
+            
         }
-        object = [NSEntityDescription insertNewObjectForEntityForName:@"Patient"
-                                               inManagedObjectContext:context];
-        [object setValue:@"Jimmy Doe" forKey:@"patientName"];
-        [object setValue:@"4321" forKey:@"doctorCode"];
-        [object setValue:@"ae5493" forKey:@"patientNumber"];
-        if (![context save:&error]) {
-            NSLog(@"Failed to save - error: %@", [error localizedDescription]);
-        }
-
+             
         [self performSegueWithIdentifier:@"Next" sender:self];
     }
 }

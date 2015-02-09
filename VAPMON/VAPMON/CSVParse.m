@@ -29,7 +29,10 @@
         while ([secondaryScanner isAtEnd] == NO) {
             if (!count) {
                 fieldStr = [[NSString alloc] init];
-                if (second_count < numFields) [secondaryScanner scanUpToString:sep intoString:&fieldStr];
+                if (second_count < numFields) {
+                    [secondaryScanner scanUpToString:sep intoString:&fieldStr];
+                    [secondaryScanner scanString:sep intoString:nil];
+                }
                 else [secondaryScanner scanUpToString:@"\n" intoString:&fieldStr];
                 [fields addObject:[fieldStr stringByReplacingOccurrencesOfString:sep withString:@""]];
                 second_count++;
@@ -37,7 +40,10 @@
             else {
                 NSString *lineStr = nil;
                 fieldStr = [fields objectAtIndex:second_count];
-                if (second_count < numFields) [secondaryScanner scanUpToString:sep intoString:&lineStr];
+                if (second_count < numFields){
+                    [secondaryScanner scanUpToString:sep intoString:&lineStr];
+                    [secondaryScanner scanString:sep intoString:nil];
+                }
                 else [secondaryScanner scanUpToString:@"\n" intoString:&lineStr];
                 [line setValue:[lineStr stringByReplacingOccurrencesOfString:sep withString:@""] forKey:fieldStr];
                 second_count++;
