@@ -48,7 +48,7 @@
         case CBCentralManagerStatePoweredOn:
         {
             NSLog(@"State: Powered On");
-            [self.btleManager scanForPeripheralsWithServices:nil options:nil];
+            [self.btleManager scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @YES }];
         } break;
             
         case CBCentralManagerStateUnknown:
