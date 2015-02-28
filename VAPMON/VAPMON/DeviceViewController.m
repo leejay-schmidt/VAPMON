@@ -17,11 +17,14 @@
 @synthesize btleManager;
 @synthesize back;
 @synthesize deviceArray;
+@synthesize rcvdData;
+@synthesize selectedPeripheral;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.deviceArray = [[NSMutableArray alloc] init];
     self.btleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    self.rcvdData = [[NSMutableData alloc] init];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -49,6 +52,7 @@
         {
             NSLog(@"State: Powered On");
             [self.btleManager scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @YES }];
+            NSLog(@"Scanning started");
         } break;
             
         case CBCentralManagerStateUnknown:
@@ -64,18 +68,81 @@
 }
 
 - (void)centralManager:(CBCentralManager*)btleManager didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
-    
     NSString *deviceName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
     if(![deviceName isEqual:@""]) {
-        NSLog(@"Found device: %@", peripheral.name);
-        [self.deviceArray addObject:peripheral];
+        if(![self.deviceArray containsObject:peripheral]) {
+            NSLog(@"Found device: %@", peripheral.name);
+            [self.deviceArray addObject:peripheral];
+            [self.deviceTable reloadData];
+        }
     }
-    [self.deviceTable reloadData];
     
 }
 
-- (NSInteger)tableView:(UITableView *)deviceTable
-    numberOfRowsInSection:(NSInteger)section{
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    NSLog(@"Failed to connect");
+}
+
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+    NSLog(@"Connected");
+    
+    [self.btleManager stopScan];
+    NSLog(@"Scanning stopped");
+    [self.rcvdData setLength:0];
+    
+    peripheral.delegate = self;
+    
+    [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
+    if (error) {
+        return;
+    }
+    
+    for (CBCharacteristic *characteristic in service.characteristics) {
+        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            NSLog(@"Discovered Characteristic");
+        }
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
+    if (error) {
+        return;
+    }
+    
+    for (CBService *service in peripheral.services) {
+        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]] forService:service];
+        NSLog(@"Discovered Service");
+    }
+    // Discover other characteristics
+}
+
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    if (error) {
+        NSLog(@"Error");
+        return;
+    }
+    
+    NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+    
+    if ([stringFromData isEqualToString:@"EOM"]) {
+        
+        //[_textview setText:[[NSString alloc] initWithData:self.rcvdData encoding:NSUTF8StringEncoding]];
+        
+        
+        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
+        
+        [self.btleManager cancelPeripheralConnection:peripheral];
+    }
+    
+    [self.rcvdData appendData:characteristic.value];
+}
+
+- (NSInteger)tableView:(UITableView *)deviceTable numberOfRowsInSection:(NSInteger)section{
     return [deviceArray count];
 }
 
@@ -89,6 +156,12 @@
     
     cell.textLabel.text = btleDevice.name;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedPeripheral = [self.deviceArray objectAtIndex:indexPath.row];
+    NSLog(@"Connecting to peripheral %@", self.selectedPeripheral.name);
+    [self.btleManager connectPeripheral:self.selectedPeripheral options:nil];
 }
 
 - (void)didReceiveMemoryWarning {
