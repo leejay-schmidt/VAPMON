@@ -35,6 +35,7 @@
 /* Begin PBXFileReference section */
 		AD44D5221A88726900C7505B /* CSVParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParse.h; sourceTree = "<group>"; };
 		AD44D5231A88772F00C7505B /* CSVParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVParse.m; sourceTree = "<group>"; };
+		AD490A6A1A9EE2C80044CD54 /* SERVICES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SERVICES.h; sourceTree = "<group>"; };
 		AD9BC6A91A86B55700972AFF /* VAPMON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VAPMON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9BC6AD1A86B55700972AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD9BC6AE1A86B55700972AFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 				AD44D5231A88772F00C7505B /* CSVParse.m */,
 				AD9BC6AD1A86B55700972AFF /* Info.plist */,
 				AD9BC6AE1A86B55700972AFF /* main.m */,
+				AD490A6A1A9EE2C80044CD54 /* SERVICES.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
