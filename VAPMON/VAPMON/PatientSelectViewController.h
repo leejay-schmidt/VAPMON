@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "Doctor.h"
+#import "DataViewController.h"
 
 @interface PatientSelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     Doctor *doctor;

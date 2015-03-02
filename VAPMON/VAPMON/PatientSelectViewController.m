@@ -65,4 +65,13 @@
     [self performSegueWithIdentifier:@"Back" sender:self];
     
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"goToPatient"]) {
+        NSIndexPath *indexPath = [self.patientTable indexPathForSelectedRow];
+        DataViewController *destViewController = segue.destinationViewController;
+        NSDictionary *patient = [patientArray objectAtIndex:indexPath.row];
+        destViewController.patientName = [patient valueForKey:@"patientName"];
+    }
+}
 @end

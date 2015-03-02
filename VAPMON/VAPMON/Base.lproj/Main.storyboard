@@ -135,6 +135,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="R1K-8c-3Lg" kind="modal" identifier="goToPatient" modalTransitionStyle="crossDissolve" id="bXj-j6-Tvd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -154,10 +157,10 @@
             </objects>
             <point key="canvasLocation" x="771" y="1264"/>
         </scene>
-        <!--View Controller-->
+        <!--Data View Controller-->
         <scene sceneID="mFe-aa-rKR">
             <objects>
-                <viewController id="R1K-8c-3Lg" sceneMemberID="viewController">
+                <viewController id="R1K-8c-3Lg" customClass="DataViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hlc-xp-55J"/>
                         <viewControllerLayoutGuide type="bottom" id="Yur-vm-OIA"/>
@@ -165,8 +168,25 @@
                     <view key="view" contentMode="scaleToFill" id="ngk-DF-q0A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T11-l7-fXJ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="YwU-jK-vQE">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="z8A-Nx-bnp">
+                                            <connections>
+                                                <segue destination="v08-Iz-Hbg" kind="modal" identifier="backToSelector" modalTransitionStyle="crossDissolve" id="aZ3-1o-gII"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="mainNav" destination="YwU-jK-vQE" id="rFf-dk-Ek1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="on4-6t-HKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -240,6 +260,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="aZ3-1o-gII"/>
         <segue reference="NsC-rV-V01"/>
     </inferredMetricsTieBreakers>
 </document>
