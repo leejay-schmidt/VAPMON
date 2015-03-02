@@ -91,7 +91,6 @@
     [self.rcvdData setLength:0];
     
     peripheral.delegate = self;
-    
     [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
 }
 
