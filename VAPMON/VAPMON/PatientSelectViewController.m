@@ -31,7 +31,9 @@
     doctor = [Doctor getInstance];
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Patient"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"doctorCode like %@", doctor.code];
+    fetchRequest.includesSubentities = NO;
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Patient" inManagedObjectContext:managedObjectContext]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"doctorCode==%@", doctor.code];
     [fetchRequest setPredicate:predicate];
     self.patientArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     

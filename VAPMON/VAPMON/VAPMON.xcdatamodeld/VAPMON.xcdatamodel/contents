@@ -4,7 +4,7 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="flowRateValue" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="pressureValue" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="parentPatient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="hasDataPoints" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="parentPatient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="date"/>
@@ -14,7 +14,6 @@
     <entity name="Doctor" syncable="YES">
         <attribute name="doctorCode" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="doctorName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hasPatient" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Patient" inverseName="doctor" inverseEntity="Patient" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="doctorName"/>
@@ -27,8 +26,7 @@
     <entity name="Patient" parentEntity="Doctor" syncable="YES">
         <attribute name="patientName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientNumber" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor" inverseName="hasPatient" inverseEntity="Doctor" syncable="YES"/>
-        <relationship name="hasDataPoints" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="DataPoint" inverseName="parentPatient" inverseEntity="DataPoint" syncable="YES"/>
+        <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="patientNumber"/>
@@ -40,7 +38,7 @@
     </entity>
     <elements>
         <element name="DataPoint" positionX="468" positionY="-8658" width="128" height="103"/>
-        <element name="Doctor" positionX="448" positionY="-9009" width="128" height="88"/>
-        <element name="Patient" positionX="394" positionY="-8838" width="128" height="103"/>
+        <element name="Doctor" positionX="448" positionY="-9009" width="128" height="73"/>
+        <element name="Patient" positionX="394" positionY="-8838" width="128" height="88"/>
     </elements>
 </model>
