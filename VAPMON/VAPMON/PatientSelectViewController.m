@@ -72,8 +72,8 @@
     if ([segue.identifier isEqualToString:@"goToPatient"]) {
         NSIndexPath *indexPath = [self.patientTable indexPathForSelectedRow];
         DataViewController *destViewController = segue.destinationViewController;
-        NSDictionary *patient = [patientArray objectAtIndex:indexPath.row];
-        destViewController.patientName = [patient valueForKey:@"patientName"];
+        NSDictionary *patient = [patientArray objectAtIndex:indexPath.row]; 
+        destViewController.patientObject = patient;
     }
 }
 @end

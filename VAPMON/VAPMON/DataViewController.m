@@ -19,7 +19,23 @@
 @synthesize dataForPlot;
 @synthesize mainNav;
 @synthesize back;
-@synthesize patientName;
+@synthesize patientObject;
+@synthesize graph;
+
+- (NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
+    return [self.dataForPlot count];
+}
+
+- (NSNumber *)numberForPlot:(CPTPlot *)plot
+    field:(NSUInteger)fieldEnum
+    recordIndex:(NSUInteger)idx {
+    NSDictionary *val = [self.dataForPlot objectAtIndex:idx];
+    
+    if(fieldEnum == CPTScatterPlotFieldX)
+        return [NSNumber numberWithInteger:(NSInteger)idx];
+    else
+        return [val valueForKey:@"pressureValue"];
+}
 
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -33,12 +49,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     doctor = [Doctor getInstance];
-    self.mainNav.title = patientName;
-    //NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Patient"];
-    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"doctorCode like %@", doctor.code];
-    //[fetchRequest setPredicate:predicate];
-    //self.patientArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    self.mainNav.title = [patientObject valueForKey:@"patientName"];
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    //NSLog(@"Set Name, now running fetch request");
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"DataPoint"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(doctorCode like %@) AND (patientNumber like %@)",
+                              doctor.code, [patientObject valueForKey:@"patientNumber"]];
+    [fetchRequest setPredicate:predicate];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
+                                                                 ascending:YES];
+    self.dataForPlot = [[[managedObjectContext executeFetchRequest:fetchRequest error:nil]
+                         sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]] mutableCopy];
+    NSLog(@"%@", self.dataForPlot);
     
     //[self.patientTable reloadData];
     // Do any additional setup after loading the view, typically from a nib.

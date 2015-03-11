@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		AD44D5241A88772F00C7505B /* CSVParse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD44D5231A88772F00C7505B /* CSVParse.m */; };
-		AD676AB81AA41EC5000648B1 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD61F74B1AA3DBBB00AC7155 /* libCorePlot-CocoaTouch.a */; };
 		AD676ABB1AA42598000648B1 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD676ABA1AA42598000648B1 /* DataViewController.m */; };
+		AD8822E51AAFE89F00479A8F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822E41AAFE89F00479A8F /* CoreData.framework */; };
+		AD8822E71AAFE8AA00479A8F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822E61AAFE8AA00479A8F /* CoreGraphics.framework */; };
+		AD8822E91AAFE8B500479A8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822E81AAFE8B500479A8F /* Foundation.framework */; };
+		AD8822EB1AAFE8BD00479A8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822EA1AAFE8BC00479A8F /* UIKit.framework */; };
+		AD8822F71AAFEA0D00479A8F /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822F41AAFEA0400479A8F /* libCorePlot-CocoaTouch.a */; };
 		AD9BC6AF1A86B55700972AFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6AE1A86B55700972AFF /* main.m */; };
 		AD9BC6B21A86B55700972AFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6B11A86B55700972AFF /* AppDelegate.m */; };
 		AD9BC6B51A86B55700972AFF /* VAPMON.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6B31A86B55700972AFF /* VAPMON.xcdatamodeld */; };
@@ -25,16 +29,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AD61F74A1AA3DBBB00AC7155 /* PBXContainerItemProxy */ = {
+		AD8822F31AAFEA0400479A8F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AD61F7441AA3DBBB00AC7155 /* CorePlot-CocoaTouch.xcodeproj */;
+			containerPortal = AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
 			remoteInfo = "CorePlot-CocoaTouch";
 		};
-		AD676AB31AA41E93000648B1 /* PBXContainerItemProxy */ = {
+		AD8822F51AAFEA0A00479A8F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AD61F7441AA3DBBB00AC7155 /* CorePlot-CocoaTouch.xcodeproj */;
+			containerPortal = AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
 			remoteInfo = "CorePlot-CocoaTouch";
@@ -52,9 +56,13 @@
 		AD44D5221A88726900C7505B /* CSVParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParse.h; sourceTree = "<group>"; };
 		AD44D5231A88772F00C7505B /* CSVParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVParse.m; sourceTree = "<group>"; };
 		AD490A6A1A9EE2C80044CD54 /* SERVICES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SERVICES.h; sourceTree = "<group>"; };
-		AD61F7441AA3DBBB00AC7155 /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../../../../../Downloads/core-plot-release_1.4/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		AD676AB91AA423E0000648B1 /* DataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
 		AD676ABA1AA42598000648B1 /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		AD8822E41AAFE89F00479A8F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AD8822E61AAFE8AA00479A8F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AD8822E81AAFE8B500479A8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AD8822EA1AAFE8BC00479A8F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "VAPMON/core-plot-release_1.4/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		AD9BC6A91A86B55700972AFF /* VAPMON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VAPMON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9BC6AD1A86B55700972AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD9BC6AE1A86B55700972AFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,7 +92,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD676AB81AA41EC5000648B1 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				AD8822F71AAFEA0D00479A8F /* libCorePlot-CocoaTouch.a in Frameworks */,
+				AD8822EB1AAFE8BD00479A8F /* UIKit.framework in Frameworks */,
+				AD8822E91AAFE8B500479A8F /* Foundation.framework in Frameworks */,
+				AD8822E71AAFE8AA00479A8F /* CoreGraphics.framework in Frameworks */,
+				AD8822E51AAFE89F00479A8F /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,10 +110,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AD61F7451AA3DBBB00AC7155 /* Products */ = {
+		AD8822EE1AAFEA0400479A8F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD61F74B1AA3DBBB00AC7155 /* libCorePlot-CocoaTouch.a */,
+				AD8822F41AAFEA0400479A8F /* libCorePlot-CocoaTouch.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,7 +121,11 @@
 		AD9BC6A01A86B55700972AFF = {
 			isa = PBXGroup;
 			children = (
-				AD61F7441AA3DBBB00AC7155 /* CorePlot-CocoaTouch.xcodeproj */,
+				AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */,
+				AD8822EA1AAFE8BC00479A8F /* UIKit.framework */,
+				AD8822E81AAFE8B500479A8F /* Foundation.framework */,
+				AD8822E61AAFE8AA00479A8F /* CoreGraphics.framework */,
+				AD8822E41AAFE89F00479A8F /* CoreData.framework */,
 				AD9BC6AB1A86B55700972AFF /* VAPMON */,
 				AD9BC6C81A86B55700972AFF /* VAPMONTests */,
 				AD9BC6AA1A86B55700972AFF /* Products */,
@@ -202,7 +218,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				AD676AB41AA41E93000648B1 /* PBXTargetDependency */,
+				AD8822F61AAFEA0A00479A8F /* PBXTargetDependency */,
 			);
 			name = VAPMON;
 			productName = VAPMON;
@@ -258,8 +274,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = AD61F7451AA3DBBB00AC7155 /* Products */;
-					ProjectRef = AD61F7441AA3DBBB00AC7155 /* CorePlot-CocoaTouch.xcodeproj */;
+					ProductGroup = AD8822EE1AAFEA0400479A8F /* Products */;
+					ProjectRef = AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -271,11 +287,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		AD61F74B1AA3DBBB00AC7155 /* libCorePlot-CocoaTouch.a */ = {
+		AD8822F41AAFEA0400479A8F /* libCorePlot-CocoaTouch.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libCorePlot-CocoaTouch.a";
-			remoteRef = AD61F74A1AA3DBBB00AC7155 /* PBXContainerItemProxy */;
+			remoteRef = AD8822F31AAFEA0400479A8F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -329,10 +345,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AD676AB41AA41E93000648B1 /* PBXTargetDependency */ = {
+		AD8822F61AAFEA0A00479A8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "CorePlot-CocoaTouch";
-			targetProxy = AD676AB31AA41E93000648B1 /* PBXContainerItemProxy */;
+			targetProxy = AD8822F51AAFEA0A00479A8F /* PBXContainerItemProxy */;
 		};
 		AD9BC6C71A86B55700972AFF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -399,6 +415,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -433,6 +450,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -441,6 +459,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PROJECT_DIR}/VAPMON/core-plot-release_1.4/framework/**",
+				);
 				INFOPLIST_FILE = VAPMON/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -451,6 +474,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PROJECT_DIR}/VAPMON/core-plot-release_1.4/framework/**",
+				);
 				INFOPLIST_FILE = VAPMON/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
