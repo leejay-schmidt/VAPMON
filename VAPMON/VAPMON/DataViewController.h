@@ -14,23 +14,20 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "CorePlot-CocoaTouch.h"
 #import "Doctor.h"
 
-//@interface DataViewController : UIViewController <CPTPlotDataSource> {
-    //CPTXYGraph *graph;
 @interface DataViewController : UIViewController {
     NSMutableArray *dataForPlot;
-    CPTXYGraph *graph;
     Doctor *doctor;
 }
 
 @property IBOutlet UIBarButtonItem *back;
 @property (strong, nonatomic) NSMutableArray *dataForPlot;
+@property (nonatomic, strong) IBOutlet UIImageView *plot;
 @property (nonatomic, strong) NSDictionary *patientObject;
 @property (nonatomic, strong) IBOutlet UINavigationItem *mainNav;
 @property (nonatomic, strong) UIView *overlayView;
-@property (nonatomic, strong) CPTXYGraph *graph;
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @end

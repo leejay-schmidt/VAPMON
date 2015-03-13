@@ -181,11 +181,15 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mKb-FR-8Tc">
+                                <rect key="frame" x="10" y="74" width="300" height="200"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="mainNav" destination="YwU-jK-vQE" id="rFf-dk-Ek1"/>
+                        <outlet property="plot" destination="mKb-FR-8Tc" id="Tgu-ca-aK3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="on4-6t-HKc" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,22 +20,8 @@
 @synthesize mainNav;
 @synthesize back;
 @synthesize patientObject;
-@synthesize graph;
-
-- (NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    return [self.dataForPlot count];
-}
-
-- (NSNumber *)numberForPlot:(CPTPlot *)plot
-    field:(NSUInteger)fieldEnum
-    recordIndex:(NSUInteger)idx {
-    NSDictionary *val = [self.dataForPlot objectAtIndex:idx];
-    
-    if(fieldEnum == CPTScatterPlotFieldX)
-        return [NSNumber numberWithInteger:(NSInteger)idx];
-    else
-        return [val valueForKey:@"pressureValue"];
-}
+@synthesize plot;
+@synthesize image;
 
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -61,9 +47,51 @@
     self.dataForPlot = [[[managedObjectContext executeFetchRequest:fetchRequest error:nil]
                          sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]] mutableCopy];
     NSLog(@"%@", self.dataForPlot);
-    
-    //[self.patientTable reloadData];
-    // Do any additional setup after loading the view, typically from a nib.
+    NSMutableString *urlString = [[NSMutableString alloc] initWithString:@"http://chart.googleapis.com/chart?cht=lc&chs=600x400"];
+    BOOL firstItem = YES;
+    NSMutableString *dateUrlString = [[NSMutableString alloc] init];
+    NSMutableString *valUrlString = [[NSMutableString alloc] init];
+    for(NSDictionary *dp in self.dataForPlot) {
+        if(firstItem == YES) firstItem = NO;
+        else {
+            [dateUrlString appendString:@"|"];
+            [valUrlString appendString:@","];
+        }
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:[dp valueForKey:@"date"]
+                                                dateStyle:NSDateFormatterShortStyle
+                                                timeStyle:NSDateFormatterNoStyle];
+        NSString *valString = [NSString stringWithFormat:@"%@", [dp valueForKey:@"pressureValue"]];
+        [dateUrlString appendString:dateString];
+        [valUrlString appendString:valString];
+    }
+    [urlString appendString:@"&chl="];
+    [urlString appendString:dateUrlString];
+    [urlString appendString:@"&chd=t:"];
+    [urlString appendString:valUrlString];
+    [urlString appendString:@"&chxt=x,y&chds=a&chof=png"];
+    //NSString *fullURLString = @"https://www.drupal.org/files/issues/sample_7.png";
+    NSString *fullURLString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:fullURLString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //self.plot = [[UIImageView alloc] init];
+    self.image = [[UIImage alloc] init];
+    [request setTimeoutInterval: 4.0];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               if (data != nil && error == nil)
+                               {
+                                   self.image = [UIImage imageWithData:data];
+                                   self.plot.image = self.image;
+                                   NSLog(@"Got data");
+                               }
+                               else
+                               {
+                                   NSLog(@"Didn't get the Data");
+                               }
+                               
+                           }];
 }
 
 - (void)didReceiveMemoryWarning {

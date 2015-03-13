@@ -13,7 +13,6 @@
 		AD8822E71AAFE8AA00479A8F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822E61AAFE8AA00479A8F /* CoreGraphics.framework */; };
 		AD8822E91AAFE8B500479A8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822E81AAFE8B500479A8F /* Foundation.framework */; };
 		AD8822EB1AAFE8BD00479A8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822EA1AAFE8BC00479A8F /* UIKit.framework */; };
-		AD8822F71AAFEA0D00479A8F /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822F41AAFEA0400479A8F /* libCorePlot-CocoaTouch.a */; };
 		AD9BC6AF1A86B55700972AFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6AE1A86B55700972AFF /* main.m */; };
 		AD9BC6B21A86B55700972AFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6B11A86B55700972AFF /* AppDelegate.m */; };
 		AD9BC6B51A86B55700972AFF /* VAPMON.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6B31A86B55700972AFF /* VAPMON.xcdatamodeld */; };
@@ -26,23 +25,10 @@
 		AD9BC6E21A86C93400972AFF /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6E01A86C93400972AFF /* DeviceViewController.m */; };
 		AD9BC6E51A86E7D800972AFF /* PatientSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */; };
 		ADB98BEE1A87351300643101 /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB98BED1A87351300643101 /* Doctor.m */; };
+		ADD9DA411AB16BC6006E7EBB /* sample_7.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD9DA401AB16BC6006E7EBB /* sample_7.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AD8822F31AAFEA0400479A8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
-		AD8822F51AAFEA0A00479A8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
 		AD9BC6C61A86B55700972AFF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AD9BC6A11A86B55700972AFF /* Project object */;
@@ -62,7 +48,6 @@
 		AD8822E61AAFE8AA00479A8F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AD8822E81AAFE8B500479A8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AD8822EA1AAFE8BC00479A8F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "VAPMON/core-plot-release_1.4/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 		AD9BC6A91A86B55700972AFF /* VAPMON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VAPMON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9BC6AD1A86B55700972AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD9BC6AE1A86B55700972AFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -85,6 +70,7 @@
 		AD9BC6E31A86E7D800972AFF /* PatientSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientSelectViewController.m; sourceTree = "<group>"; };
 		AD9BC6E41A86E7D800972AFF /* PatientSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientSelectViewController.h; sourceTree = "<group>"; };
 		ADB98BED1A87351300643101 /* Doctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Doctor.m; sourceTree = "<group>"; };
+		ADD9DA401AB16BC6006E7EBB /* sample_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sample_7.png; path = VAPMON/sample_7.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD8822F71AAFEA0D00479A8F /* libCorePlot-CocoaTouch.a in Frameworks */,
 				AD8822EB1AAFE8BD00479A8F /* UIKit.framework in Frameworks */,
 				AD8822E91AAFE8B500479A8F /* Foundation.framework in Frameworks */,
 				AD8822E71AAFE8AA00479A8F /* CoreGraphics.framework in Frameworks */,
@@ -110,18 +95,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AD8822EE1AAFEA0400479A8F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AD8822F41AAFEA0400479A8F /* libCorePlot-CocoaTouch.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		AD9BC6A01A86B55700972AFF = {
 			isa = PBXGroup;
 			children = (
-				AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */,
+				ADD9DA401AB16BC6006E7EBB /* sample_7.png */,
 				AD8822EA1AAFE8BC00479A8F /* UIKit.framework */,
 				AD8822E81AAFE8B500479A8F /* Foundation.framework */,
 				AD8822E61AAFE8AA00479A8F /* CoreGraphics.framework */,
@@ -218,7 +195,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				AD8822F61AAFEA0A00479A8F /* PBXTargetDependency */,
 			);
 			name = VAPMON;
 			productName = VAPMON;
@@ -272,12 +248,6 @@
 			mainGroup = AD9BC6A01A86B55700972AFF;
 			productRefGroup = AD9BC6AA1A86B55700972AFF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = AD8822EE1AAFEA0400479A8F /* Products */;
-					ProjectRef = AD8822ED1AAFEA0400479A8F /* CorePlot-CocoaTouch.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				AD9BC6A81A86B55700972AFF /* VAPMON */,
@@ -285,16 +255,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		AD8822F41AAFEA0400479A8F /* libCorePlot-CocoaTouch.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libCorePlot-CocoaTouch.a";
-			remoteRef = AD8822F31AAFEA0400479A8F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AD9BC6A71A86B55700972AFF /* Resources */ = {
@@ -304,6 +264,7 @@
 				AD9BC6BB1A86B55700972AFF /* Main.storyboard in Resources */,
 				AD9BC6C01A86B55700972AFF /* LaunchScreen.xib in Resources */,
 				AD9BC6BD1A86B55700972AFF /* Images.xcassets in Resources */,
+				ADD9DA411AB16BC6006E7EBB /* sample_7.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,11 +306,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AD8822F61AAFEA0A00479A8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CorePlot-CocoaTouch";
-			targetProxy = AD8822F51AAFEA0A00479A8F /* PBXContainerItemProxy */;
-		};
 		AD9BC6C71A86B55700972AFF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AD9BC6A81A86B55700972AFF /* VAPMON */;
