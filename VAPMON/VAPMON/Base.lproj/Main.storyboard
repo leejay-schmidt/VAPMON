@@ -17,7 +17,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="814-Eg-CNA">
-                                <rect key="frame" x="44" y="187" width="232" height="56"/>
+                                <rect key="frame" x="0.0" y="227" width="320" height="56"/>
+                                <color key="backgroundColor" red="0.68403964269999995" green="0.83036629500000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" secureTextEntry="YES"/>
                                 <connections>
@@ -25,11 +26,14 @@
                                 </connections>
                             </textField>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your doctor code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90V-AD-foi">
-                                <rect key="frame" x="44" y="158" width="232" height="21"/>
+                                <rect key="frame" x="44" y="198" width="232" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="original-logos-2015-Mar-3148-3984834.png" translatesAutoresizingMaskIntoConstraints="NO" id="C6w-Jh-lKx">
+                                <rect key="frame" x="90" y="62" width="140" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -53,14 +57,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select your action:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqX-pn-0fg">
-                                <rect key="frame" x="62" y="143" width="197" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UA9-5N-q0K">
-                                <rect key="frame" x="62" y="197" width="197" height="39"/>
+                                <rect key="frame" x="62" y="238" width="197" height="39"/>
                                 <color key="backgroundColor" red="0.9456521739" green="0.74847664930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Get Data from Device">
                                     <color key="titleColor" red="1" green="0.0" blue="0.01123394829974167" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfI-aq-bkk">
-                                <rect key="frame" x="62" y="264" width="197" height="39"/>
+                                <rect key="frame" x="62" y="285" width="197" height="39"/>
                                 <color key="backgroundColor" red="0.9456521739" green="0.74847664930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="View Patient Data">
                                     <color key="titleColor" red="1" green="0.0" blue="0.011233948299999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,6 +79,15 @@
                                     <segue destination="v08-Iz-Hbg" kind="modal" identifier="Patient" id="94i-4h-JZP"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="original-logos-2015-Mar-3148-3984834.png" translatesAutoresizingMaskIntoConstraints="NO" id="01v-xp-FNU">
+                                <rect key="frame" x="90" y="60" width="140" height="128"/>
+                            </imageView>
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select your action:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUS-dI-ogw">
+                                <rect key="frame" x="62" y="196" width="197" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -306,13 +313,16 @@
             <point key="canvasLocation" x="1355" y="406"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="original-logos-2015-Mar-3148-3984834.png" width="766" height="839"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aZ3-1o-gII"/>
-        <segue reference="NsC-rV-V01"/>
+        <segue reference="zWO-Yf-Coh"/>
+        <segue reference="94i-4h-JZP"/>
     </inferredMetricsTieBreakers>
 </document>

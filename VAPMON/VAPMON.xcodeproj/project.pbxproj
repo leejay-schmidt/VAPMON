@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD363FB31AB3968E0065CA98 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD363FB11AB3968E0065CA98 /* icon.png */; };
+		AD363FB41AB3968E0065CA98 /* original-logos-2015-Mar-3148-3984834.png in Resources */ = {isa = PBXBuildFile; fileRef = AD363FB21AB3968E0065CA98 /* original-logos-2015-Mar-3148-3984834.png */; };
 		AD44D5241A88772F00C7505B /* CSVParse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD44D5231A88772F00C7505B /* CSVParse.m */; };
 		AD676ABB1AA42598000648B1 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD676ABA1AA42598000648B1 /* DataViewController.m */; };
 		AD8822E51AAFE89F00479A8F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8822E41AAFE89F00479A8F /* CoreData.framework */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD363FB11AB3968E0065CA98 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = VAPMON/icon.png; sourceTree = "<group>"; };
+		AD363FB21AB3968E0065CA98 /* original-logos-2015-Mar-3148-3984834.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "original-logos-2015-Mar-3148-3984834.png"; path = "VAPMON/original-logos-2015-Mar-3148-3984834.png"; sourceTree = "<group>"; };
 		AD44D5221A88726900C7505B /* CSVParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParse.h; sourceTree = "<group>"; };
 		AD44D5231A88772F00C7505B /* CSVParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVParse.m; sourceTree = "<group>"; };
 		AD490A6A1A9EE2C80044CD54 /* SERVICES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SERVICES.h; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 		AD9BC6A01A86B55700972AFF = {
 			isa = PBXGroup;
 			children = (
+				AD363FB11AB3968E0065CA98 /* icon.png */,
+				AD363FB21AB3968E0065CA98 /* original-logos-2015-Mar-3148-3984834.png */,
 				ADD9DA401AB16BC6006E7EBB /* sample_7.png */,
 				AD8822EA1AAFE8BC00479A8F /* UIKit.framework */,
 				AD8822E81AAFE8B500479A8F /* Foundation.framework */,
@@ -261,7 +267,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD363FB41AB3968E0065CA98 /* original-logos-2015-Mar-3148-3984834.png in Resources */,
 				AD9BC6BB1A86B55700972AFF /* Main.storyboard in Resources */,
+				AD363FB31AB3968E0065CA98 /* icon.png in Resources */,
 				AD9BC6C01A86B55700972AFF /* LaunchScreen.xib in Resources */,
 				AD9BC6BD1A86B55700972AFF /* Images.xcassets in Resources */,
 				ADD9DA411AB16BC6006E7EBB /* sample_7.png in Resources */,
