@@ -16,6 +16,9 @@
 @property (nonatomic, strong) IBOutlet UIButton *xmitButton;
 @property (nonatomic, strong) IBOutlet UIButton *viewButton;
 
+@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
 
 @end
 

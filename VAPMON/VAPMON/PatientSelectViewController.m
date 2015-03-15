@@ -16,6 +16,41 @@
 @synthesize patientArray;
 @synthesize back;
 @synthesize patientTable;
+@synthesize overlayView;
+@synthesize activityView;
+
+/**
+ * Function to enable loading state
+ * written by Leejay
+ */
+- (void)stateIsLoading
+{
+    if(![self.overlayView isDescendantOfView:self.view])
+    {
+        self.overlayView = [[UIView alloc] initWithFrame:self.view.frame];
+        self.overlayView.backgroundColor = [UIColor blackColor];
+        self.overlayView.alpha = 0.4;
+        [self.view addSubview:self.overlayView];
+        self.activityView=[[UIActivityIndicatorView alloc]
+                           initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.activityView.center=self.view.center;
+        [self.activityView startAnimating];
+        [self.overlayView addSubview:self.activityView];
+    }
+}
+
+/**
+ * Function to disable loading state
+ * written by Leejay
+ */
+- (void)stateIsLoaded
+{
+    if([self.overlayView isDescendantOfView:self.view])
+    {
+        [self.activityView removeFromSuperview];
+        [self.overlayView removeFromSuperview];
+    }
+}
 
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -28,6 +63,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self stateIsLoading];
     doctor = [Doctor getInstance];
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Patient"];
@@ -38,6 +74,7 @@
     self.patientArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     
     [self.patientTable reloadData];
+    [self stateIsLoaded];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

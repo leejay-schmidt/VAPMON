@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="original-logos-2015-Mar-3148-3984834.png" translatesAutoresizingMaskIntoConstraints="NO" id="C6w-Jh-lKx">
-                                <rect key="frame" x="90" y="62" width="140" height="128"/>
+                                <rect key="frame" x="90" y="48" width="140" height="142"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -80,7 +80,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="original-logos-2015-Mar-3148-3984834.png" translatesAutoresizingMaskIntoConstraints="NO" id="01v-xp-FNU">
-                                <rect key="frame" x="90" y="60" width="140" height="128"/>
+                                <rect key="frame" x="90" y="46" width="140" height="142"/>
                             </imageView>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select your action:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUS-dI-ogw">
                                 <rect key="frame" x="62" y="196" width="197" height="21"/>
@@ -193,15 +193,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mKb-FR-8Tc">
-                                <rect key="frame" x="10" y="96" width="300" height="200"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pressure Data Chart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzT-wQ-LV8">
-                                <rect key="frame" x="83" y="72" width="155" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Readings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgy-BM-T4d">
                                 <rect key="frame" x="124" y="304" width="73" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -238,13 +229,27 @@
                                     <outlet property="delegate" destination="R1K-8c-3Lg" id="UI2-gm-0KX"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pressure/Flow Rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzT-wQ-LV8">
+                                <rect key="frame" x="85" y="73" width="150" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pva-Lz-Dvy">
+                                <rect key="frame" x="10" y="102" width="300" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="R1K-8c-3Lg" id="srZ-rG-RFO"/>
+                                </connections>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="dataPointTable" destination="L0H-jn-Xq2" id="5Ic-GC-ZRy"/>
                         <outlet property="mainNav" destination="YwU-jK-vQE" id="rFf-dk-Ek1"/>
-                        <outlet property="plot" destination="mKb-FR-8Tc" id="Tgu-ca-aK3"/>
+                        <outlet property="plot" destination="Pva-Lz-Dvy" id="L2x-Iw-Jnz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="on4-6t-HKc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,7 +327,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zWO-Yf-Coh"/>
-        <segue reference="94i-4h-JZP"/>
+        <segue reference="NsC-rV-V01"/>
+        <segue reference="aZ3-1o-gII"/>
     </inferredMetricsTieBreakers>
 </document>

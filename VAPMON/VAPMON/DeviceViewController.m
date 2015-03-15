@@ -19,9 +19,45 @@
 @synthesize deviceArray;
 @synthesize rcvdData;
 @synthesize selectedPeripheral;
+@synthesize overlayView;
+@synthesize activityView;
+
+/**
+ * Function to enable loading state
+ * written by Leejay
+ */
+- (void)stateIsLoading
+{
+    if(![self.overlayView isDescendantOfView:self.view])
+    {
+        self.overlayView = [[UIView alloc] initWithFrame:self.view.frame];
+        self.overlayView.backgroundColor = [UIColor blackColor];
+        self.overlayView.alpha = 0.4;
+        [self.view addSubview:self.overlayView];
+        self.activityView=[[UIActivityIndicatorView alloc]
+                           initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.activityView.center=self.view.center;
+        [self.activityView startAnimating];
+        [self.overlayView addSubview:self.activityView];
+    }
+}
+
+/**
+ * Function to disable loading state
+ * written by Leejay
+ */
+- (void)stateIsLoaded
+{
+    if([self.overlayView isDescendantOfView:self.view])
+    {
+        [self.activityView removeFromSuperview];
+        [self.overlayView removeFromSuperview];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self stateIsLoading];
     self.deviceArray = [[NSMutableArray alloc] init];
     self.btleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     self.rcvdData = [[NSMutableData alloc] init];
@@ -76,6 +112,7 @@
             [self.deviceTable reloadData];
         }
     }
+    [self stateIsLoaded];
     
 }
 

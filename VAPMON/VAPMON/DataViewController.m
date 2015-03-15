@@ -21,6 +21,41 @@
 @synthesize patientObject;
 @synthesize plot;
 @synthesize image;
+@synthesize overlayView;
+@synthesize activityView;
+
+/**
+ * Function to enable loading state
+ * written by Leejay
+ */
+- (void)stateIsLoading
+{
+    if(![self.overlayView isDescendantOfView:self.view])
+    {
+        self.overlayView = [[UIView alloc] initWithFrame:self.view.frame];
+        self.overlayView.backgroundColor = [UIColor blackColor];
+        self.overlayView.alpha = 0.4;
+        [self.view addSubview:self.overlayView];
+        self.activityView=[[UIActivityIndicatorView alloc]
+                           initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.activityView.center=self.view.center;
+        [self.activityView startAnimating];
+        [self.overlayView addSubview:self.activityView];
+    }
+}
+
+/**
+ * Function to disable loading state
+ * written by Leejay
+ */
+- (void)stateIsLoaded
+{
+    if([self.overlayView isDescendantOfView:self.view])
+    {
+        [self.activityView removeFromSuperview];
+        [self.overlayView removeFromSuperview];
+    }
+}
 
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
@@ -31,12 +66,23 @@
     return context;
 }
 
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [self stateIsLoaded];
+    if(pressureWarning) {
+        [self alertWithMessage:@"Abnormally high pressure reading, with possible upward trend" title:@"Pressure Warning"];
+    }
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self stateIsLoading];
     doctor = [Doctor getInstance];
+    pressureWarning = false;
     self.mainNav.title = [patientObject valueForKey:@"patientName"];
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    //NSLog(@"Set Name, now running fetch request");
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"DataPoint"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(doctorCode like %@) AND (patientNumber like %@)",
                               doctor.code, [patientObject valueForKey:@"patientNumber"]];
@@ -46,51 +92,115 @@
     self.dataForPlot = [[[managedObjectContext executeFetchRequest:fetchRequest error:nil]
                          sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]] mutableCopy];
     NSLog(@"%@", self.dataForPlot);
-    NSMutableString *urlString = [[NSMutableString alloc] initWithString:@"http://chart.googleapis.com/chart?cht=lc&chs=600x400"];
+    NSMutableString *urlString = [[NSMutableString alloc] initWithString:@"<html><head><script type=\"text/javascript\" \
+                                  src=\"https://www.google.com/jsapi?autoload={ \
+                                  'modules':[{ \
+                                  'name':'visualization', \
+                                  'version':'1', \
+                                  'packages':['corechart'] \
+                                  }] \
+                                  }\"></script> \
+                                  \
+                                  <script type=\"text/javascript\"> \
+                                  google.setOnLoadCallback(drawChart); \
+                                  \
+                                  function drawChart() {\
+                                      var data = google.visualization.arrayToDataTable([\
+                                                                                        ['Date', 'Pressure (mmHg)/Flow Rate (mL/s)'],"];
     BOOL firstItem = YES;
-    NSMutableString *dateUrlString = [[NSMutableString alloc] init];
-    NSMutableString *valUrlString = [[NSMutableString alloc] init];
+    int count = 0;
+    int consistentBlips = 0;
+    float runningSum = 0;
+
+
+    
     for(NSDictionary *dp in self.dataForPlot) {
         if(firstItem == YES) firstItem = NO;
         else {
-            [dateUrlString appendString:@"|"];
-            [valUrlString appendString:@","];
+            [urlString appendString:@","];
         }
         NSString *dateString = [NSDateFormatter localizedStringFromDate:[dp valueForKey:@"date"]
                                                 dateStyle:NSDateFormatterShortStyle
                                                 timeStyle:NSDateFormatterNoStyle];
-        NSString *valString = [NSString stringWithFormat:@"%@", [dp valueForKey:@"pressureValue"]];
-        [dateUrlString appendString:dateString];
-        [valUrlString appendString:valString];
+        int pressureVal = (int)[dp valueForKey:@"pressureValue"];
+        int flowRateVal = (int)[dp valueForKey:@"flowRateValue"];
+        
+        float proportion = (float)pressureVal / (float)flowRateVal;
+        
+        //used to calculate if the pressure warning should trigger
+        if(count == 0 && runningSum == 0) {
+            //if first value, simply increment
+            ++count, runningSum +=proportion;
+        }
+        else {
+            //otherwise, do the check
+            float averageProp = runningSum / (float)count;
+            //using the average proportion, determine if the value falls within the tolerance
+            if(averageProp > proportion) {
+                //if it does not, increment the trend counter
+                //doing this will naturally normalize the data, to get an upward curve and generate
+                //a trend that will properly trigger the warning
+                if(averageProp - proportion > (averageProp * (TOLERANCE_PERCENTAGE / 100)))
+                    ++consistentBlips;
+                else
+                    consistentBlips = 0;
+            }
+            else {
+                if(proportion - averageProp > (averageProp * (TOLERANCE_PERCENTAGE / 100)))
+                    ++consistentBlips;
+                else
+                    consistentBlips = 0;
+            }
+            
+        }
+        //trigger the warning with normalized data or if the latest value was high
+        if(consistentBlips > 0) {
+            if(count > 3) {
+                //since the values will only be high if they are at the end of the graph,
+                //this will demonstrate a consistent upward trend from the latest readings
+                //and will ignore previous high readings
+                if(consistentBlips > 3) pressureWarning = true;
+            }
+        }
+        
+        
+        NSNumber *propVal = [NSNumber numberWithFloat:proportion];
+        
+        [urlString appendFormat:@"['%@', %@]", dateString, propVal];
     }
-    [urlString appendString:@"&chl="];
-    [urlString appendString:dateUrlString];
-    [urlString appendString:@"&chd=t:"];
-    [urlString appendString:valUrlString];
-    [urlString appendString:@"&chxt=x,y&chds=a&chof=png"];
-    //NSString *fullURLString = @"https://www.drupal.org/files/issues/sample_7.png";
-    NSString *fullURLString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url = [NSURL URLWithString:fullURLString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    //self.plot = [[UIImageView alloc] init];
-    self.image = [[UIImage alloc] init];
-    [request setTimeoutInterval: 4.0];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue currentQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               
-                               if (data != nil && error == nil)
-                               {
-                                   self.image = [UIImage imageWithData:data];
-                                   self.plot.image = self.image;
-                                   NSLog(@"Got data");
-                               }
-                               else
-                               {
-                                   NSLog(@"Didn't get the Data");
-                               }
-                               
-                           }];
+    plot.delegate = self;
+    plot.scalesPageToFit = YES;
+    
+    [urlString appendString:@"]);\
+     \
+     var options = {\
+     width: 1000,\
+     height: 640,\
+     chartArea:{left:60,top:0,width:\"85%\",height:\"90%\"},\
+     hAxis: {\
+        title: 'Date'\
+     },\
+     vAxis: {\
+        title: 'Pressure (mmHg)/Flow Rate(mL/s)'\
+     },\
+     legend: 'none'\
+     };\
+     \
+     var chart = new google.visualization.LineChart(document.getElementById('ex0'));\
+     \
+     chart.draw(data, options);\
+     }\
+     </script>\
+     </head>\
+     <body>\
+     <div id=\"ex0\"></div>\
+     </body>\
+     </html>"];
+    plot.userInteractionEnabled = YES;
+    plot.opaque = NO;
+    plot.backgroundColor = [UIColor clearColor];
+    [plot loadHTMLString:[NSString stringWithFormat:@"%@", urlString] baseURL: nil];
+    NSLog(@"%@", plot);
     
 }
 

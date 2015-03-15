@@ -8,7 +8,7 @@
 
 #ifndef VAPMON_DataViewController_h
 #define VAPMON_DataViewController_h
-
+#define TOLERANCE_PERCENTAGE 10
 
 #endif
 
@@ -19,14 +19,17 @@
 
 @interface DataViewController : UIViewController <UITableViewDelegate,
                                                   UITableViewDataSource,
+                                                  UIWebViewDelegate,
                                                   MFMailComposeViewControllerDelegate> {
     NSMutableArray *dataForPlot;
     Doctor *doctor;
+    UIWebView *plot;
+    BOOL pressureWarning;
 }
 
 @property (nonatomic, strong) IBOutlet UITableView *dataPointTable;
 @property (strong, nonatomic) NSMutableArray *dataForPlot;
-@property (nonatomic, strong) IBOutlet UIImageView *plot;
+@property (nonatomic, strong) IBOutlet UIWebView *plot;
 @property (nonatomic, strong) NSDictionary *patientObject;
 @property (nonatomic, strong) IBOutlet UINavigationItem *mainNav;
 @property (nonatomic, strong) UIView *overlayView;
