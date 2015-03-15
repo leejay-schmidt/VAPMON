@@ -88,6 +88,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWz-Hs-7KL">
+                                <rect key="frame" x="62" y="332" width="197" height="39"/>
+                                <color key="backgroundColor" red="0.9456521739" green="0.74847664930000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Preload with Sample Data">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.011233948299999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="preloadWithCSVData:" destination="yqh-px-GrU" eventType="touchUpInside" id="ZMW-2k-AOk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -328,6 +339,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="NsC-rV-V01"/>
-        <segue reference="aZ3-1o-gII"/>
+        <segue reference="94i-4h-JZP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Doctor.h"
+#import "CSVParse.h"
+#import <CoreData/CoreData.h>
 
 @interface SelectorViewController : UIViewController <UITextFieldDelegate> {
     Doctor *doctor;
@@ -19,6 +21,7 @@
 @property (nonatomic, strong) UIView *overlayView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
+-(IBAction)preloadWithCSVData:(id)sender;
 
 @end
 

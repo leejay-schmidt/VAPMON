@@ -140,18 +140,22 @@
                 //if it does not, increment the trend counter
                 //doing this will naturally normalize the data, to get an upward curve and generate
                 //a trend that will properly trigger the warning
-                if(averageProp - proportion > (averageProp * (TOLERANCE_PERCENTAGE / 100)))
+                if(averageProp - proportion > (averageProp * (TOLERANCE_PERCENTAGE / 100))) {
                     ++consistentBlips;
+                    NSLog(@"We have a blip: %d", consistentBlips);
+                }
                 else
                     consistentBlips = 0;
             }
             else {
-                if(proportion - averageProp > (averageProp * (TOLERANCE_PERCENTAGE / 100)))
+                if(proportion - averageProp > (averageProp * (TOLERANCE_PERCENTAGE / 100))) {
                     ++consistentBlips;
+                    NSLog(@"We have a blip: %d", consistentBlips);
+                }
                 else
                     consistentBlips = 0;
             }
-            
+            ++count; runningSum += proportion;
         }
         //trigger the warning with normalized data or if the latest value was high
         if(consistentBlips > 0) {
@@ -160,6 +164,7 @@
                 //this will demonstrate a consistent upward trend from the latest readings
                 //and will ignore previous high readings
                 if(consistentBlips > 3) pressureWarning = true;
+                
             }
         }
         
