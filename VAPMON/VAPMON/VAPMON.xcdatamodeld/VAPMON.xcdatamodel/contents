@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14A388b" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14A388b" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DataPoint" parentEntity="Patient" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="flowRateValue" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="pressureValue" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="flowRateValue" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="pressureValue" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <relationship name="parentPatient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="hasDataPoint" inverseEntity="Patient" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -39,7 +39,7 @@
         </compoundIndexes>
     </entity>
     <elements>
-        <element name="DataPoint" positionX="468" positionY="-8658" width="128" height="103"/>
+        <element name="DataPoint" positionX="468" positionY="-8658" width="128" height="105"/>
         <element name="Doctor" positionX="448" positionY="-9009" width="128" height="88"/>
         <element name="Patient" positionX="394" positionY="-8838" width="128" height="103"/>
     </elements>

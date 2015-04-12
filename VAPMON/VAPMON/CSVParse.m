@@ -10,7 +10,7 @@
 
 @implementation CSVParse
 
--(NSMutableArray *)parseCSV:(NSString *)csv withSeparator:(NSString *)sep{
+-(NSMutableArray *)parseCSV:(NSString *)csv withSeparator:(NSString *)sep {
     NSString *currentLine = nil;
     NSMutableArray *fields = [[NSMutableArray alloc] init];
     NSMutableArray *data = [[NSMutableArray alloc] init];
@@ -33,7 +33,7 @@
                     [secondaryScanner scanUpToString:sep intoString:&fieldStr];
                     [secondaryScanner scanString:sep intoString:nil];
                 }
-                else [secondaryScanner scanUpToString:@"\n" intoString:&fieldStr];
+                //else [secondaryScanner scanUpToString:@"\n" intoString:&fieldStr];
                 [fields addObject:[fieldStr stringByReplacingOccurrencesOfString:sep withString:@""]];
                 second_count++;
             }
@@ -44,7 +44,7 @@
                     [secondaryScanner scanUpToString:sep intoString:&lineStr];
                     [secondaryScanner scanString:sep intoString:nil];
                 }
-                else [secondaryScanner scanUpToString:@"\n" intoString:&lineStr];
+                //else [secondaryScanner scanUpToString:@"\n" intoString:&lineStr];
                 [line setValue:[lineStr stringByReplacingOccurrencesOfString:sep withString:@""] forKey:fieldStr];
                 second_count++;
             }

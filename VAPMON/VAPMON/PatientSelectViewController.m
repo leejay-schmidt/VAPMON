@@ -61,10 +61,15 @@
     return context;
 }
 
+/**
+ * Executed when the view controller loads
+ * Please refer to the Apple documentation for more information
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self stateIsLoading];
     doctor = [Doctor getInstance];
+    //Fetch the patients from Core Data
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Patient"];
     fetchRequest.includesSubentities = NO;
@@ -72,7 +77,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"doctorCode==%@", doctor.code];
     [fetchRequest setPredicate:predicate];
     self.patientArray = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
+    //Load it all up in the table view
     [self.patientTable reloadData];
     [self stateIsLoaded];
     // Do any additional setup after loading the view, typically from a nib.

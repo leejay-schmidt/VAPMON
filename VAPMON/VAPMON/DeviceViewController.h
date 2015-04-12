@@ -10,15 +10,20 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBService.h>
 #import "SERVICES.h"
+#import "Doctor.h"
+#import "CSVParse.h"
+#import <CoreData/CoreData.h>
 
 
-@interface DeviceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface DeviceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CBCentralManagerDelegate, CBPeripheralDelegate> {
+    Doctor *doctor;
+}
 
 @property IBOutlet UIBarButtonItem *back;
 @property (nonatomic, strong) IBOutlet UITableView *deviceTable;
 @property (nonatomic, strong) CBCentralManager *btleManager;
 @property (nonatomic, strong) CBPeripheral *selectedPeripheral;
-@property (nonatomic, strong) NSMutableData *rcvdData;
+@property (nonatomic, strong) NSMutableString *rcvdData;
 @property (nonatomic, strong) NSMutableArray *deviceArray;
 @property (nonatomic, strong) UIView *overlayView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;

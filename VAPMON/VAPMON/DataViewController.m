@@ -57,6 +57,9 @@
     }
 }
 
+/**
+ * Needed for Core Data
+ */
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -76,12 +79,17 @@
     
 }
 
+/**
+ * Standard Apple view controller load thing
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self stateIsLoading];
     doctor = [Doctor getInstance];
     pressureWarning = false;
+    //Show the patient name at the top of the view controller
     self.mainNav.title = [patientObject valueForKey:@"patientName"];
+    //Fetch the data from Core Data
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"DataPoint"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(doctorCode like %@) AND (patientNumber like %@)",
@@ -92,6 +100,7 @@
     self.dataForPlot = [[[managedObjectContext executeFetchRequest:fetchRequest error:nil]
                          sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]] mutableCopy];
     NSLog(@"%@", self.dataForPlot);
+    //Create the url string for the Google Charts Javascript library
     NSMutableString *urlString = [[NSMutableString alloc] initWithString:@"<html><head><script type=\"text/javascript\" \
                                   src=\"https://www.google.com/jsapi?autoload={ \
                                   'modules':[{ \
@@ -113,7 +122,8 @@
     float runningSum = 0;
 
 
-    
+    //Do all of the magic on the data
+    //This involves iterating over the returned dictionaries, formatting/appending to the HTML, and reading for abnormal values
     for(NSDictionary *dp in self.dataForPlot) {
         if(firstItem == YES) firstItem = NO;
         else {
@@ -122,10 +132,10 @@
         NSString *dateString = [NSDateFormatter localizedStringFromDate:[dp valueForKey:@"date"]
                                                 dateStyle:NSDateFormatterShortStyle
                                                 timeStyle:NSDateFormatterNoStyle];
-        int pressureVal = (int)[dp valueForKey:@"pressureValue"];
-        int flowRateVal = (int)[dp valueForKey:@"flowRateValue"];
+        float pressureVal = [[dp valueForKey:@"pressureValue"] floatValue] * 8.57;
+        float flowRateVal = [[dp valueForKey:@"flowRateValue"] floatValue];
         
-        float proportion = (float)pressureVal / (float)flowRateVal;
+        float proportion = pressureVal / flowRateVal;
         
         //used to calculate if the pressure warning should trigger
         if(count == 0 && runningSum == 0) {
@@ -157,24 +167,25 @@
             }
             ++count; runningSum += proportion;
         }
-        //trigger the warning with normalized data or if the latest value was high
-        if(consistentBlips > 0) {
-            if(count > 3) {
-                //since the values will only be high if they are at the end of the graph,
-                //this will demonstrate a consistent upward trend from the latest readings
-                //and will ignore previous high readings
-                if(consistentBlips > 3) pressureWarning = true;
-                
-            }
-        }
         
         
         NSNumber *propVal = [NSNumber numberWithFloat:proportion];
         
         [urlString appendFormat:@"['%@', %@]", dateString, propVal];
     }
+    //trigger the warning with normalized data or if the latest value was high
+    if(consistentBlips > 0) {
+        if(count > 3) {
+            //since the values will only be high if they are at the end of the graph,
+            //this will demonstrate a consistent upward trend from the latest readings
+            //and will ignore previous high readings
+            if(consistentBlips > 3) pressureWarning = true;
+            
+        }
+    }
     plot.delegate = self;
     plot.scalesPageToFit = YES;
+    //Creates the closing values for the Google Charts information
     
     [urlString appendString:@"]);\
      \
@@ -201,19 +212,28 @@
      <div id=\"ex0\"></div>\
      </body>\
      </html>"];
+    //Settings for the WebView
     plot.userInteractionEnabled = YES;
     plot.opaque = NO;
     plot.backgroundColor = [UIColor clearColor];
+    //Loads the HTML in the WebView
     [plot loadHTMLString:[NSString stringWithFormat:@"%@", urlString] baseURL: nil];
     NSLog(@"%@", plot);
     
 }
 
+/*
+ * Standard Apple Tableview stuffz
+ */
 - (NSInteger)tableView:(UITableView *)dataPointTable
  numberOfRowsInSection:(NSInteger)section{
     return [self.dataForPlot count];
 }
 
+/**
+ * Tableview handler for the flow rate/pressure handler
+ * Refer to Apple Documentation for more information
+ */
 - (UITableViewCell *)tableView:(UITableView *)patientTable cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [self.dataPointTable dequeueReusableCellWithIdentifier:@"DataPointCell"];
@@ -222,7 +242,15 @@
     }
     NSManagedObject *object = [self.dataForPlot objectAtIndex:indexPath.row];
     NSLog(@"%@", [object valueForKey:@"doctorCode"]);
-    cell.textLabel.text = [NSString stringWithFormat:@"Pressure: %@ mmHg", [object valueForKey:@"pressureValue"]];
+    //main label formatting
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+    //format the number strings to be 2 decimal places
+    NSString *pressureString = [NSString stringWithFormat:@"%0.2f", ([[object valueForKey:@"pressureValue"] floatValue] * 8.57)];
+    NSString *flowRateString = [NSString stringWithFormat:@"%0.2f", [[object valueForKey:@"flowRateValue"] floatValue]];
+    //Set the text label string to the pressure and flow rate string
+    cell.textLabel.text = [NSString stringWithFormat:@"Pressure: %@ mmHg  |  Flow Rate: %@ mL/s",
+                           pressureString, flowRateString];
+    //Set the detail to the date that the flow rate was taken on (formatted from the string)
     NSString *dateString = [NSDateFormatter localizedStringFromDate:[object valueForKey:@"date"]
                                                           dateStyle:NSDateFormatterMediumStyle
                                                           timeStyle:NSDateFormatterNoStyle];
@@ -230,6 +258,11 @@
     return cell;
 }
 
+/**
+ * Basically the inverse of the parse CSV -- creates a CSV string from a mutable array of dictionaries
+ * array = the mutable array of the patient's values
+ * sep = the desired separator to be used in the CSV
+ */
 - (NSString *)createCSV:(NSMutableArray *)array separator:(NSString *)sep {
     NSMutableString *csvStr = [[NSMutableString alloc] initWithFormat:@"Date%@Pressure(mmHg)%@Flow Rate(mL/s)", sep, sep];
     for (NSDictionary *item in array) {
@@ -237,14 +270,20 @@
         NSString *date = [NSDateFormatter localizedStringFromDate:[item valueForKey:@"date"]
                                                         dateStyle:NSDateFormatterShortStyle
                                                         timeStyle:NSDateFormatterNoStyle];
-        NSString *pressure = [NSString stringWithFormat:@"%@", [item valueForKey:@"pressureValue"]];
-        NSString *flowRate = [NSString stringWithFormat:@"%@", [item valueForKey:@"flowRateValue"]];
+        NSString *pressure = [NSString stringWithFormat:@"%0.2f", ([[item valueForKey:@"pressureValue"] floatValue] * 8.57)];
+        NSString *flowRate = [NSString stringWithFormat:@"%0.2f", [[item valueForKey:@"flowRateValue"] floatValue]];
         NSString *appendString = [NSString stringWithFormat:@"%@%@%@%@%@", date, sep, pressure, sep, flowRate];
         [csvStr appendString:appendString];
     }
     return [NSString stringWithFormat:@"%@", csvStr];
 }
 
+
+/**
+ * Saves the given string to a CSV file with a given filename
+ * csv = the CSV string to save
+ * name = the desired filename (no .csv...the method will handle this)
+ */
 - (NSString *)saveCSV:(NSString *)csv filename:(NSString *)name {
     // For error information
     NSError *error;
@@ -291,6 +330,12 @@
     return filePath;
 }
 
+/**
+ * Creates a new email message with a given file as an attachment
+ * file = the FULL filename/path (including extension) that is desired to be attached
+ * patientName = the name of the partient that you want to be included in the message
+ * recipient = the email address of the desired recipient
+ */
 - (void)showEmail:(NSString*)file withPatientName:(NSString *)patientName withRecipient:(NSString *)recipient {
     
     NSString *emailTitle = [NSString stringWithFormat:@"Vascular Access Port Data for %@", patientName];
@@ -338,6 +383,11 @@
     
 }
 
+/**
+ * Creates a new alert message with the desired message and title
+ * message = the desired message
+ * title = the desired title (the thing on top)
+ */
 - (void)alertWithMessage:(NSString *)message title:(NSString *)title {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                     message:message
@@ -347,8 +397,13 @@
     [alert show];
 }
 
+/**
+ * Handles mail composer view controller changes
+ * will give a failure, success, or saved message
+ */
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    //Checks the resulting state change
     switch (result)
     {
         case MFMailComposeResultCancelled:
@@ -371,6 +426,10 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+/**
+ * Action to email the CSV for the currently selected patient
+ * triggered by the "Email" button push
+ */
 - (IBAction)emailTheCSV:(id)sender {
     NSString *csv = [self createCSV:self.dataForPlot separator:@","];
     NSLog(@"%@", csv);
@@ -379,11 +438,17 @@
     [self showEmail:file withPatientName:patientName withRecipient:nil];
 }
 
+/**
+ * BAD THINGS
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ * Segues back to the patient view controller
+ */
 - (IBAction)back:(id)sender {
     [self performSegueWithIdentifier:@"Back" sender:self];
     
